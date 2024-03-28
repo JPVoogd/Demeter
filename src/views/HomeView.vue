@@ -1,9 +1,21 @@
-<script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+<template>
+  <div>
+    <h1>Test</h1>
+    <SignupForm />
+    <LoginForm />
+  </div>
+</template>
+
+<script>
+import SignupForm from '@/components/SignupForm.vue';
+import LoginForm from '@/components/LoginForm.vue';
+
+export default {
+  components: { SignupForm, LoginForm }
+}
+
 </script>
 
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template>
+<style lang="scss" scoped>
+
+</style>
