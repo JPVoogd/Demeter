@@ -10,4 +10,4 @@
 
 <style lang="scss" scoped>
 
-</style>Í
+</style>
