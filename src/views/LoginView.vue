@@ -15,8 +15,10 @@ import BaseInput from '@/components/BaseInput.vue'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/firebase/config.js'
 
-const username = ref('');
-const password = ref('');
+const username = ref('')
+const password = ref('')
+
+const isLoggedIn = false
 
 const buttonText = 'Submit';
 
@@ -24,7 +26,6 @@ function Login() {
   signInWithEmailAndPassword(auth, username.value, password.value)
     .then(() => {
 
-      console.log("logged In!")
     })
     .catch((error) => {
             console.log(error.message)
