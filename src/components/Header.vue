@@ -6,7 +6,7 @@
         <router-link to="/contact">Contact</router-link> |
         <router-link to="/invoice">Invoice Customer</router-link> |
         <router-link to="/about">About</router-link> |
-        <router-link to="/account">Sign Up</router-link> |
+        <router-link to="/signup">Sign Up</router-link> |
         <router-link to="/login">Login</router-link>
     </nav>
 </template>

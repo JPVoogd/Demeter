@@ -1,22 +1,34 @@
 <template>
   <div>
-    <BaseInput v-model="firstName" label="First Name" type="text" class="login-form" />
-    <BaseInput v-model="lastName" label="Last Name" type="text" class="login-form" />
-    <button @click="handleButtonClick">{{ buttonText }}</button>
+    <form @submit.prevent="Login">
+      <BaseInput v-model="username" label="username" type="text" class="login-form" />
+      <BaseInput v-model="password" label="password" type="password" class="login-form" />
+      <button>{{ buttonText }}</button>
+    </form>
+
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import BaseInput from '@/components/BaseInput.vue'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '@/firebase/config.js'
 
-const firstName = ref('');
-const lastName = ref('');
+const username = ref('');
+const password = ref('');
 
 const buttonText = 'Submit';
 
-function handleButtonClick() {
-    console.log('Button clicked!');
+function Login() {
+  signInWithEmailAndPassword(auth, username.value, password.value)
+    .then(() => {
+
+      console.log("logged In!")
+    })
+    .catch((error) => {
+            console.log(error.message)
+        })
 }
 </script>
 

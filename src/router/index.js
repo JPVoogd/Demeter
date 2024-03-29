@@ -14,10 +14,10 @@ const routes = [
       import("../views/AboutView.vue"),
   },
   {
-    path: "/account",
-    name: "account",
+    path: "/signup",
+    name: "signup",
     component: () =>
-      import("../views/AccountView.vue"),
+      import("../views/SignupView.vue"),
   },
   {
     path: "/contact",
