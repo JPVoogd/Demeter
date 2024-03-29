@@ -5,25 +5,10 @@
   </div>
 </template>
 
-<script>
-import axios from 'axios'
+<script setup>
 
-export default {
-  name: 'product',
-  data() {
-    return {
-      products: []
-    }
-  },
-  mounted() {
-    this.getProducts();
-  },
-  methods: {
-    getProducts() {
-      axios.get('').then(res => {
-        console.log('test')
-      })
-    }
-  }
-}
 </script>
+
+<style lang="scss" scoped>
+
+</style>

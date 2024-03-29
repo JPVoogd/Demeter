@@ -58,7 +58,11 @@
   <button>Go to payments</button>
 </template>
 
-<style>
+<script setup>
+
+</script>
+
+<style lang="scss" scoped>
 .productrow {
   justify-content: space-between;
 }
@@ -101,3 +105,4 @@ button:hover {
   border-color: #0a58ca;
 }
 </style>
+

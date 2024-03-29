@@ -1,6 +1,11 @@
 <template>
-    <div class="about">
-      <h1>This is an constumer page</h1>
-    </div>
-  </template>
-  
+  <div>
+    <h1>CustomerView</h1>
+  </div>
+</template>
+
+<script setup>
+
+</script>
+
+<style lang="scss" scoped></style>

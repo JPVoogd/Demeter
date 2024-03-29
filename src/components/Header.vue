@@ -11,17 +11,10 @@
     </nav>
 </template>
 
-<style lang="scss">
-nav {
-    padding: 30px;
+<script setup>
 
-    a {
-        font-weight: bold;
-        color: #2c3e50;
+</script>
 
-        &.router-link-exact-active {
-            color: #42b983;
-        }
-    }
-}
+<style lang="scss" scoped>
+
 </style>
