@@ -1,4 +1,7 @@
 <template>
+    <nav >
+      <router-link to="/">Sign Up</router-link> |
+    </nav>
   <RouterView />
 </template>
 
