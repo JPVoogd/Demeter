@@ -1,7 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="handleButtonClick">
-            <BaseInput v-model="username" label="Username" type="text" class="login-form" />
+        <form @submit.prevent="createUser">
             <BaseInput v-model="email" label="Email" type="email" class="login-form" />
             <BaseInput v-model="password" label="Password" type="password" class="login-form" />
             <button>Sign Up</button>
@@ -15,17 +14,26 @@ import BaseInput from '@/components/BaseInput.vue'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/firebase/config.js'
 
-const username = ref('');
 const email = ref('');
 const password = ref('');
 
-function handleButtonClick() {
-    createUserWithEmailAndPassword(auth, email.value, password.value)
-    .then(() => {
-                })
-        .catch((error) => {
-            console.log(error.message)
-        })
+async function createUser() {
+  createUserWithEmailAndPassword(
+    auth,
+    email.value,
+    password.value
+  )
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user
+      console.log(user)
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code
+      const errorMessage = error.message
+      // ..
+    })
 }
 
 

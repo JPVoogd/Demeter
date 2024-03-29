@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent="Login">
+    <form @submit.prevent="signInToFirebase">
       <BaseInput v-model="username" label="username" type="text" class="login-form" />
       <BaseInput v-model="password" label="password" type="password" class="login-form" />
       <button>{{ buttonText }}</button>
@@ -18,18 +18,23 @@ import { auth } from '@/firebase/config.js'
 const username = ref('')
 const password = ref('')
 
-const isLoggedIn = false
-
 const buttonText = 'Submit';
 
-function Login() {
-  signInWithEmailAndPassword(auth, username.value, password.value)
-    .then(() => {
-
+async function signInToFirebase() {
+  signInWithEmailAndPassword(
+    auth,
+    username.value,
+    password.value
+  )
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user
+      // ...
     })
     .catch((error) => {
-            console.log(error.message)
-        })
+      const errorCode = error.code
+      const errorMessage = error.message
+    })
 }
 </script>
 
