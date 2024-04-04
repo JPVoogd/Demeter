@@ -20,8 +20,6 @@ import { reactive, computed } from 'vue';
 import BaseInput from '@/components/BaseInput.vue'
 import useVuelidate from '@vuelidate/core'
 import { required, minLength, email, sameAs } from '@vuelidate/validators'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '@/firebase/config.js'
 
 const formData = reactive({
   username: "",
@@ -44,22 +42,7 @@ const v$ = useVuelidate(rules, formData)
 async function createUser() {
   const result = await v$.value.$validate()
   if (result) {
-    createUserWithEmailAndPassword(
-      auth,
-      formData.email,
-      formData.password
-    )
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user
-        console.log(user)
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code
-        const errorMessage = error.message
-        // ..
-      })
+
     alert("succes, form submitted!")
   } else {
     alert("error, form not submitted!")

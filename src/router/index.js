@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import { supabase } from "@/supabase/config";
 
 const routes = [
   {
@@ -12,6 +13,9 @@ const routes = [
     name: "about",
     component: () =>
       import("../views/AboutView.vue"),
+      meta: {
+        requireAuth: true
+      }
   },
   {
     path: "/signup",
@@ -90,6 +94,7 @@ const routes = [
     name: "user",
     component: () =>
       import("../views/UserView.vue"),
+      meta: { requiresAuth: true },
   },
   {
     path: "/:pathMatch(.*)*",
@@ -103,5 +108,26 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
+
+
+async function getUser(next) {
+	localUser = await supabase.auth.getSession();
+	if (localUser.data.session == null) {
+		next('/unauthorized')
+	}
+	else {
+		next();
+	}
+}
+
+
+router.beforeEach((to, from, next) => {
+	if (to.meta.requiresAuth) {
+		getUser(next);
+	}
+	else {
+		next();
+	}
+})
 
 export default router;
