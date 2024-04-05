@@ -29,7 +29,7 @@ import { supabase } from "@/supabase/config.js";
 import ProductList from "@/components/ProductList.vue";
 
 const products = ref([]);
-const paymentAmount = ref('');
+const paymentAmount = ref("");
 
 async function getProducts() {
   const { data } = await supabase
@@ -50,7 +50,7 @@ async function buyProduct(product_id, price, stock) {
       console.error("Error updating product stock:", error);
     } else {
       console.log("Product purchased successfully!");
-      router.push({ name: 'user', params: { price: 'price' } }) 
+      location.reload();
     }
   } else {
     alert("Product out of stock!");
@@ -71,7 +71,7 @@ async function deleteProduct(product_id) {
       throw error;
     }
     console.log("Row deleted successfully:", data);
-    router.push({ path: "/product" });
+    location.reload();
   } catch (error) {
     console.error("Error deleting row:", error.message);
   }
