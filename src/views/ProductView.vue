@@ -3,7 +3,7 @@
 
   <div class="container">
     <ProductList
-      v-for="(product) in products"
+      v-for="product in products"
       :name="product.product_name"
       :product_id="product.id"
       :descripton="product.product_description"
@@ -14,31 +14,51 @@
       v-on:deleteProduct="deleteProduct"
     />
   </div>
+
+  <div v-if="paymentAmount.value">
+    <p>Pay cash or card?</p>
+    <button>Cash</button>
+    <button>Card: {{ paymentAmount.value }}</button>
+  </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
 import router from "@/router";
 import { supabase } from "@/supabase/config.js";
-
 import ProductList from "@/components/ProductList.vue";
 
 const products = ref([]);
+const paymentAmount = ref('');
 
 async function getProducts() {
-  const { data } = await supabase.from("products").select();
+  const { data } = await supabase
+    .from("products")
+    .select()
+    .order("id", { ascending: true });
   products.value = data;
 }
 
-console.log(products)
+async function buyProduct(product_id, price, stock) {
+  if (stock > 0) {
+    const { data, error } = await supabase
+      .from("products")
+      .update({ product_stock: stock - 1 })
+      .eq("id", product_id);
 
-function buyProduct(product_id) {
-  // router.push({ path: "/" });
-  console.log(product_id)
+    if (error) {
+      console.error("Error updating product stock:", error);
+    } else {
+      console.log("Product purchased successfully!");
+      router.push({ name: 'user', params: { price: 'price' } }) 
+    }
+  } else {
+    alert("Product out of stock!");
+  }
 }
 
 function editProduct(product_id) {
-  console.log(product_id)
+  console.log(product_id);
 }
 
 async function deleteProduct(product_id) {

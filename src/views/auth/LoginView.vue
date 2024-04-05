@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed } from 'vue';
+import { reactive, computed } from 'vue';
 import BaseInput from '@/components/BaseInput.vue'
 
 import useVuelidate from '@vuelidate/core'
@@ -27,8 +27,6 @@ const formData = reactive({
   email: "",
   password: "",
 })
-
-const localUser = ref("")
 
 const rules = computed(() => {
   return {

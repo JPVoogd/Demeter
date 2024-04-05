@@ -3,8 +3,8 @@
     <h2>{{ name }}</h2>
     <p>{{ descripton }}</p>
     <p>Price: ${{ price }}</p>
-    <p>Stock: {{ stock }}</p>
-    <button @click="$emit('buyProduct', product_id)">Buy</button>
+    <p id="count">Stock: {{ stock }}</p>
+    <button @click="$emit('buyProduct', product_id, price, stock)">Buy</button>
     <button @click="$emit('editProduct', product_id)">Edit</button>
     <button @click="$emit('deleteProduct', product_id)">Delete</button>
   </div>
