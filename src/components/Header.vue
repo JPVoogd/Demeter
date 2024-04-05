@@ -9,17 +9,28 @@
         <router-link to="/user">User</router-link> |
         <router-link to="/signup">Sign Up</router-link> |
         <button @click="logout">Logout</button>
-        <router-link  to="/login">Login</router-link>
+        <router-link to="/login">Login</router-link>
     </nav>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { supabase } from '@/supabase/config';
 
+// const account = ref()
+// getSession()
+
+// async function getSession() {
+//   account.value = await supabase.auth.getSession();
+// }
+
 async function logout() {
-    let { error } = await supabase.auth.signOut()
-    console.log("Logged Out!")
-    
+    const { error } = await supabase.auth.signOut()
+    if (error) {
+        console.log(error)
+    } else {
+        console.log("Logged out succesfull")
+    }
 }
 
 

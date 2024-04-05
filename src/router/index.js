@@ -1,6 +1,9 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+
 import { supabase } from "@/supabase/config";
+
+let localUser;
 
 const routes = [
   {
@@ -13,15 +16,12 @@ const routes = [
     name: "about",
     component: () =>
       import("../views/AboutView.vue"),
-      meta: {
-        requireAuth: true
-      }
   },
   {
     path: "/signup",
     name: "signup",
     component: () =>
-      import("../views/SignupView.vue"),
+      import("../views/auth/SignupView.vue"),
   },
   {
     path: "/contact",
@@ -57,7 +57,7 @@ const routes = [
     path: "/login",
     name: "login",
     component: () =>
-      import("../views/LoginView.vue"),
+      import("../views/auth/LoginView.vue"),
   },
   {
     path: "/payment",
@@ -90,11 +90,19 @@ const routes = [
       import("../views/UserEditView.vue"),
   },
   {
+    path: "/unauthorized",
+    name: "unauthorized",
+    component: () =>
+      import("../views/auth/UnauthorizedView.vue"),
+  },
+  {
     path: "/user",
     name: "user",
     component: () =>
       import("../views/UserView.vue"),
-      meta: { requiresAuth: true },
+      meta: {
+        requireAuth: true
+      }
   },
   {
     path: "/:pathMatch(.*)*",
@@ -109,25 +117,24 @@ const router = createRouter({
   routes,
 });
 
-
+//get User
 async function getUser(next) {
-	localUser = await supabase.auth.getSession();
+	localUser = await supabase.auth.getSession()
 	if (localUser.data.session == null) {
 		next('/unauthorized')
 	}
 	else {
-		next();
+		next()
 	}
 }
 
-
+//Auth requirements
 router.beforeEach((to, from, next) => {
-	if (to.meta.requiresAuth) {
-		getUser(next);
-	}
-	else {
-		next();
-	}
+  if (to.meta.requireAuth) {
+      getUser(next)
+  } else {
+    next()
+  }
 })
 
 export default router;
