@@ -6,18 +6,18 @@
     <h1>Hello, {{ useAuthStore.fname }}</h1>
     <p>You are buying: {{ useProductStore.name }}</p>
     <p>The price is: ${{ useProductStore.price }},-</p>
-    <label>Enter your card details:<input type="text" v-model="cardNumber"></label>
-    <button @click="paymentCard(useProductStore.price, cardNumber)">Pay now!</button>
+    <label
+      >Enter your card details: <input type="text" v-model="cardNumber"
+    /></label>
+    <button @click="paymentCard(cardNumber)">Pay now!</button>
   </div>
 
   <div v-if="payCash">
     <h1>Hello, {{ useAuthStore.fname }}</h1>
     <p>You are buying: {{ useProductStore.name }}</p>
     <p>The price is: ${{ useProductStore.price }},-</p>
-    <input type="text" v-model="inputPayment" />
-    <button @click="paymentCash(useProductStore.price, inputPayment)">
-      Pay now!
-    </button>
+    <label>Enter cash amount: <input type="text" v-model="inputPayment" /></label>
+    <button @click="paymentCash(inputPayment)">Pay now!</button>
   </div>
 
   <!-- Product list -->
@@ -83,14 +83,38 @@ const showModal = ref(false);
 const payCard = ref(false);
 const payCash = ref(false);
 
-function paymentCard(price, cardNumber){
-  alert("The following amount: " + price + " will be taken from account: " + cardNumber)
+async function paymentCard(cardNumber) {
+  alert(
+    "The following amount: " +
+      useProductStore.price +
+      " will be taken from account: " +
+      cardNumber
+  );
+  const { data, error } = await supabase
+    .from("products")
+    .update({ product_stock: useProductStore.stock - 1 })
+    .eq("id", useProductStore.id);
+  if (error) {
+    console.error("Error updating product stock:", error);
+  } else {
+    window.location.reload();
+    console.log("Product purchased successfully!");
+  }
 }
 
-function paymentCash(price, inputPayment) {
-  const change = inputPayment - price;
-  alert("Your change is: " + change);
-  payCash = false;
+async function paymentCash(inputPayment) {
+  const change = inputPayment - useProductStore.price;
+  alert("Your change is: $" + parseFloat(change) + ",-");
+  const { data, error } = await supabase
+    .from("products")
+    .update({ product_stock: useProductStore.stock - 1 })
+    .eq("id", useProductStore.id);
+  if (error) {
+    console.error("Error updating product stock:", error);
+  } else {
+    window.location.reload();
+    console.log("Product purchased successfully!");
+  }
 }
 
 async function getProducts() {
@@ -103,19 +127,12 @@ async function getProducts() {
 
 async function buyProduct(product_id, name, descripton, price, stock) {
   if (stock > 0) {
-    const { data, error } = await supabase
-      .from("products")
-      .update({ product_stock: stock - 1 })
-      .eq("id", product_id);
-    if (error) {
-      console.error("Error updating product stock:", error);
-    } else {
-      console.log("Product purchased successfully!");
-      useProductStore.name = name;
-      useProductStore.description = descripton;
-      useProductStore.price = price;
-      showModal.value = true;
-    }
+    useProductStore.id = product_id;
+    useProductStore.name = name;
+    useProductStore.description = descripton;
+    useProductStore.price = price;
+    useProductStore.stock = stock;
+    showModal.value = true;
   } else {
     alert("Product out of stock!");
   }
