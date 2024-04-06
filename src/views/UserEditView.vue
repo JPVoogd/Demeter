@@ -9,6 +9,7 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import BaseInput from '@/components/BaseInput.vue'
+import { useAuthStore } from '@/stores/AuthStore';
 
 const firstName = ref('');
 const lastName = ref('');

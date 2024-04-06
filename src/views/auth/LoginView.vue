@@ -20,20 +20,18 @@
         error.$message
       }}</span>
       <br />
-      <button>Login</button>
+      <button @click="login">Login</button>
     </form>
-  </div>
-  <div>
-    <button @click="fetchUser">See User</button>
   </div>
 </template>
 
 <script setup>
-import { reactive, computed } from "vue";
+import { ref, reactive, computed } from "vue";
 import BaseInput from "@/components/BaseInput.vue";
 import useVuelidate from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
 import { supabase } from "@/supabase/config";
+import { useAuthStore } from "@/stores/AuthStore";
 
 const formData = reactive({
   email: "",
@@ -49,6 +47,8 @@ const rules = computed(() => {
 
 const v$ = useVuelidate(rules, formData);
 
+const account = ref("");
+
 async function login() {
   const result = await v$.value.$validate();
   if (result) {
@@ -61,6 +61,12 @@ async function login() {
       console.log(error);
     } else {
       console.log(data);
+      account.value = await supabase.auth.getSession();
+
+      useAuthStore.fname = account.value.data.session.user.user_metadata.fname;
+      useAuthStore.lname = account.value.data.session.user.user_metadata.lname;
+      useAuthStore.email = account.value.data.session.user.email;
+      useAuthStore.role = account.value.data.session.user.role;
     }
   } else {
     alert("error, form not submitted");

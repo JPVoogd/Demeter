@@ -1,11 +1,8 @@
-import { defineStore } from "pinia";
-import { supabase } from "@/supabase/config";
+import { reactive } from 'vue'
 
-export const useAuthStore = defineStore('user', {
-    state: () => ({
-      user: [],
-    }),
-    actions: {
-
-    }
-  })
+export const useAuthStore = reactive({
+  fname: "",
+  lname: "",
+  email: "",
+  role: "",
+})

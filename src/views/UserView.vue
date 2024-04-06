@@ -1,26 +1,18 @@
 <template>
-  <h1>Welcome, {{ account.data.session.user.user_metadata.fname }}</h1>
+  <h1>Welcome, {{ useAuthStore.fname }}</h1>
   <div>
     <img src="https://placehold.co/250x250" alt="" />
-    <p>First name: {{ account.data.session.user.user_metadata.fname }}</p>
-    <p>Last name: {{ account.data.session.user.user_metadata.lname }}</p>
-    <p>Email: {{ account.data.session.user.email }}</p>
-    <p>role: {{ account.data.session.user.role }}</p>
+    <p>First name: {{ useAuthStore.fname }}</p>
+    <p>Last name: {{ useAuthStore.lname }}</p>
+    <p>Email: {{ useAuthStore.email }}</p>
+    <p>role: {{ useAuthStore.role }}</p>
     <button><router-link to="/user-edit">Edit</router-link></button>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { supabase } from "@/supabase/config";
+import { useAuthStore } from "@/stores/AuthStore";
 
-const account = ref('');
-
-async function getSession() {
-  account.value = await supabase.auth.getSession();
-}
-
-getSession();
 </script>
 
 <style lang="scss" scoped></style>
