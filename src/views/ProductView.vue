@@ -6,7 +6,8 @@
     <h1>Hello, {{ useAuthStore.fname }}</h1>
     <p>You are buying: {{ useProductStore.name }}</p>
     <p>The price is: ${{ useProductStore.price }},-</p>
-    <button @click="paymentCard">Pay now!</button>
+    <label>Enter your card details:<input type="text" v-model="cardNumber"></label>
+    <button @click="paymentCard(useProductStore.price, cardNumber)">Pay now!</button>
   </div>
 
   <div v-if="payCash">
@@ -81,6 +82,10 @@ const products = ref([]);
 const showModal = ref(false);
 const payCard = ref(false);
 const payCash = ref(false);
+
+function paymentCard(price, cardNumber){
+  alert("The following amount: " + price + " will be taken from account: " + cardNumber)
+}
 
 function paymentCash(price, inputPayment) {
   const change = inputPayment - price;
