@@ -15,7 +15,7 @@
               <button
                 class="modal-default-button"
                 @click="$emit('close')"
-              >OK</button>
+              >Cancel Payment</button>
             </slot>
           </div>
         </div>
