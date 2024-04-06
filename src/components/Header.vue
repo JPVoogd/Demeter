@@ -16,6 +16,8 @@
 <script setup>
 import { supabase } from "@/supabase/config";
 import { useAuthStore } from "@/stores/AuthStore";
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 async function logout() {
   const { error } = await supabase.auth.signOut();
@@ -23,6 +25,7 @@ async function logout() {
     console.log(error);
   } else {
     console.log("Logged out succesfull");
+    router.push("/");
     useAuthStore.fname = "";
     useAuthStore.lname = "";
     useAuthStore.email = "";

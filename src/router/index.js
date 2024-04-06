@@ -1,9 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-
-import { supabase } from "@/supabase/config";
-
-let localUser;
+import { useAuthStore } from "@/stores/AuthStore";
 
 const routes = [
   {
@@ -119,8 +116,7 @@ const router = createRouter({
 
 //get User
 async function getUser(next) {
-	localUser = await supabase.auth.getSession()
-	if (localUser.data.session == null) {
+	if (useAuthStore.email === "") {
 		next('/unauthorized')
 	}
 	else {

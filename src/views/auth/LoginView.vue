@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Login</h1>
     <form @submit.prevent="login">
       <BaseInput
         v-model="formData.email"
@@ -23,6 +24,7 @@
       <button @click="login">Login</button>
     </form>
   </div>
+  <button @click="seeUser">See User</button>
 </template>
 
 <script setup>
@@ -32,6 +34,8 @@ import useVuelidate from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
 import { supabase } from "@/supabase/config";
 import { useAuthStore } from "@/stores/AuthStore";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const formData = reactive({
   email: "",
@@ -48,6 +52,10 @@ const rules = computed(() => {
 const v$ = useVuelidate(rules, formData);
 
 const account = ref("");
+
+function seeUser() {
+  console.log(useAuthStore);
+}
 
 async function login() {
   const result = await v$.value.$validate();
@@ -67,6 +75,7 @@ async function login() {
       useAuthStore.lname = account.value.data.session.user.user_metadata.lname;
       useAuthStore.email = account.value.data.session.user.email;
       useAuthStore.role = account.value.data.session.user.role;
+      router.push("user");
     }
   } else {
     alert("error, form not submitted");
