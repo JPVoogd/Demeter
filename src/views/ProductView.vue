@@ -14,22 +14,35 @@
       v-on:deleteProduct="deleteProduct"
     />
   </div>
-
-  <div v-if="paymentAmount.value">
-    <p>Pay cash or card?</p>
-    <button>Cash</button>
-    <button>Card: {{ paymentAmount.value }}</button>
+  <div>
+    <Teleport to="body">
+      <modal :show="showModal" @close="showModal = false">
+        <template #header>
+          <h3>Buy: {{ productName }}</h3>
+        </template>
+        <template #body>
+          <p>Price: {{ paymentAmount }}</p>
+          <div>
+            <button>Pay per card</button>
+            <button>Pay cash</button>
+          </div>
+        </template>
+      </modal>
+    </Teleport>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
-import router from "@/router";
 import { supabase } from "@/supabase/config.js";
 import ProductList from "@/components/ProductList.vue";
+import modal from "@/components/Modal.vue";
 
 const products = ref([]);
-const paymentAmount = ref("");
+const paymentAmount = ref(null);
+const productName = ref("");
+
+const showModal = ref(false);
 
 async function getProducts() {
   const { data } = await supabase
@@ -39,18 +52,19 @@ async function getProducts() {
   products.value = data;
 }
 
-async function buyProduct(product_id, price, stock) {
+async function buyProduct(product_id, name, price, stock) {
   if (stock > 0) {
     const { data, error } = await supabase
       .from("products")
       .update({ product_stock: stock - 1 })
       .eq("id", product_id);
-
     if (error) {
       console.error("Error updating product stock:", error);
     } else {
       console.log("Product purchased successfully!");
-      location.reload();
+      paymentAmount.value = price;
+      productName.value = name;
+      showModal.value = true;
     }
   } else {
     alert("Product out of stock!");
