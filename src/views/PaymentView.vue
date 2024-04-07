@@ -1,6 +1,5 @@
 <template>
-  <router-link to="/customer-info">go to constumer info</router-link>
-
+  <h2>Please pay here</h2>
   <!-- Payment section  -->
   <div v-if="useProductStore.card">
     <p>You are buying: {{ useProductStore.name }}</p>
@@ -33,13 +32,13 @@ async function paymentCard(cardNumber) {
       cardNumber +
       " ."
   );
-  router.push("customer-info");
+  router.push("container");
 }
 
 async function paymentCash(inputPayment) {
   const change = inputPayment - useProductStore.price;
   alert("Your change is: €" + parseFloat(change) + " .");
-  router.push("customer-info");
+  router.push("container");
 }
 </script>
 

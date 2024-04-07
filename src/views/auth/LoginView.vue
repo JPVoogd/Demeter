@@ -65,6 +65,7 @@ async function login() {
       console.log(data);
       account.value = await supabase.auth.getSession();
 
+      useAuthStore.userId = account.value.data.session.user.id;
       useAuthStore.fname = account.value.data.session.user.user_metadata.fname;
       useAuthStore.lname = account.value.data.session.user.user_metadata.lname;
       useAuthStore.email = account.value.data.session.user.email;

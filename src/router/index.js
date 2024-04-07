@@ -33,22 +33,19 @@ const routes = [
       import("../views/ContactformView.vue"),
   },
   {
-    path: "/customer-info",
-    name: "customer-info",
+    path: "/container",
+    name: "container",
     component: () =>
-      import("../views/CustomerInfoView.vue"),
-  },
-  {
-    path: "/customer",
-    name: "customer",
-    component: () =>
-      import("../views/CustomerView.vue"),
+      import("../views/ContainerView.vue"),
   },
   {
     path: "/invoice",
     name: "invoice",
     component: () =>
       import("../views/InvoiceView.vue"),
+      meta: {
+        requireAuth: true
+      }
   },
   {
     path: "/login",

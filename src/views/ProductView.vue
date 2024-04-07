@@ -1,6 +1,5 @@
 <template>
-  <router-link to="/shopping">Go to Shopping</router-link>
-
+  <h1>Demeter's Vending Machine</h1>
   <!-- Product list -->
   <div class="container">
     <ProductList

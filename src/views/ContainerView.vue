@@ -1,5 +1,4 @@
 <template>
-  <router-link to="/payment">go to payment</router-link>
   <div class="container">
     <h2>{{ useProductStore.name }}</h2>
     <p>{{ useProductStore.description }}</p>
