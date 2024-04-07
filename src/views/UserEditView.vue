@@ -1,23 +1,47 @@
 <template>
-  <div>
-    <BaseInput v-model="firstName" label="First Name" type="text" class="login-form" />
-    <BaseInput v-model="lastName" label="Last Name" type="text" class="login-form" />
-    <BaseInput v-model="lastName" type="submit" value="Submit" class="login-form" @click="handleButtonClick" />
-  </div>
+  <form @submit.prevent="editUser">
+    <BaseInput
+      v-model="useAuthStore.fname"
+      label="First Name"
+      type="text"
+      class="login-form"
+    />
+    <BaseInput
+      v-model="useAuthStore.lname"
+      label="Last Name"
+      type="text"
+      class="login-form"
+    />
+    <BaseInput
+      v-model="useAuthStore.email"
+      label="Email"
+      type="text"
+      class="login-form"
+    />
+    <button>Submit</button>
+  </form>
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
-import BaseInput from '@/components/BaseInput.vue'
-import { useAuthStore } from '@/stores/AuthStore';
+import router from "@/router";
+import BaseInput from "@/components/BaseInput.vue";
+import { useAuthStore } from "@/stores/AuthStore";
+import { supabase } from "@/supabase/config";
 
-const firstName = ref('');
-const lastName = ref('');
-
-function handleButtonClick() {
-    console.log(firstName.value, lastName.value);
+async function editUser() {
+  const { data, error } = await supabase.auth.updateUser({
+    email: useAuthStore.email,
+    data: { fname: useAuthStore.fname, lname: useAuthStore.lname },
+  });
+  if (error) {
+    alert(error);
+  } else {
+    useAuthStore.fname = useAuthStore.fname;
+    useAuthStore.lname = useAuthStore.lname;
+    useAuthStore.email = useAuthStore.email;
+    router.push("user");
+  }
 }
-
 </script>
 
 <style lang="scss" scoped></style>

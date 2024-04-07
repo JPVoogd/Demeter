@@ -21,10 +21,9 @@
         error.$message
       }}</span>
       <br />
-      <button @click="login">Login</button>
+      <button>Login</button>
     </form>
   </div>
-  <button @click="seeUser">See User</button>
 </template>
 
 <script setup>
@@ -34,8 +33,7 @@ import useVuelidate from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
 import { supabase } from "@/supabase/config";
 import { useAuthStore } from "@/stores/AuthStore";
-import { useRouter } from "vue-router";
-const router = useRouter();
+import router from "@/router";
 
 const formData = reactive({
   email: "",
@@ -53,10 +51,6 @@ const v$ = useVuelidate(rules, formData);
 
 const account = ref("");
 
-function seeUser() {
-  console.log(useAuthStore);
-}
-
 async function login() {
   const result = await v$.value.$validate();
   if (result) {
@@ -66,7 +60,7 @@ async function login() {
     });
 
     if (error) {
-      console.log(error);
+      alert(error);
     } else {
       console.log(data);
       account.value = await supabase.auth.getSession();
@@ -75,6 +69,7 @@ async function login() {
       useAuthStore.lname = account.value.data.session.user.user_metadata.lname;
       useAuthStore.email = account.value.data.session.user.email;
       useAuthStore.role = account.value.data.session.user.role;
+
       router.push("user");
     }
   } else {

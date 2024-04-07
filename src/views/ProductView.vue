@@ -64,13 +64,13 @@ const products = ref([]);
 const showModal = ref(false);
 
 function goToCheckoutCard() {
-  useProductStore.card = true
-  router.push('shopping');
+  useProductStore.card = true;
+  router.push("payment");
 }
 
 function goToCheckoutCash() {
-  useProductStore.cash = true
-  router.push('shopping');
+  useProductStore.cash = true;
+  router.push("payment");
 }
 
 async function getProducts() {
