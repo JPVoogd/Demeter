@@ -4,7 +4,9 @@
     <p>{{ useProductStore.description }}</p>
     <p>You have payed!</p>
     <button v-if="openMaken" @click="openContainer">Open the container</button>
-    <button v-if="takeOut" @click="takeOutProduct">Take out the {{ useProductStore.name }}</button>
+    <button v-if="takeOut" @click="takeOutProduct">
+      Take out the {{ useProductStore.name }}
+    </button>
     <button v-if="close" @click="closeContainer">Close the container</button>
   </div>
 </template>
@@ -14,23 +16,24 @@ import { ref } from "vue";
 import { supabase } from "@/supabase/config";
 import { useProductStore } from "@/stores/ProductStore";
 import router from "@/router";
+import { useAuthStore } from "@/stores/AuthStore";
 
-const openMaken = ref(true)
-const takeOut = ref(false)
-const close = ref(false)
+const openMaken = ref(true);
+const takeOut = ref(false);
+const close = ref(false);
 
 function openContainer() {
-  openMaken.value = false
-  takeOut.value = true
+  openMaken.value = false;
+  takeOut.value = true;
 }
 
 function takeOutProduct() {
-  takeOut.value = false
-  close.value = true
+  takeOut.value = false;
+  close.value = true;
 }
 
 async function closeContainer() {
-  close.value = false
+  close.value = false;
   const { data, error } = await supabase
     .from("products")
     .update({ product_stock: useProductStore.stock - 1 })
@@ -39,6 +42,19 @@ async function closeContainer() {
     console.error("Error updating product stock:", error);
   } else {
     console.log("Product updated successfully!");
+  }
+  updatePurchaseHistory();
+}
+
+async function updatePurchaseHistory() {
+  const { data, error } = await supabase
+    .from("purchase_history")
+    .insert([{ user_id: useAuthStore.userId, product_id: useProductStore.id }])
+    .select();
+  if (error) {
+    console.error("Error Creating History:", error);
+  } else {
+    console.log("History Created");
     router.push('thank-you')
   }
 }

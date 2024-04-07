@@ -73,6 +73,7 @@ const formData = reactive({
   email: "",
   password: "",
   confirmPassword: "",
+  role: "user",
 });
 
 const rules = computed(() => {
@@ -97,6 +98,7 @@ async function createUser() {
         data: {
           fname: formData.fname,
           lname: formData.lname,
+          role: formData.role,
         },
       },
     });

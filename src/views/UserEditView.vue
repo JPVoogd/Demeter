@@ -4,30 +4,30 @@
       v-model="formData.fname"
       label="First Name"
       type="text"
-      class="login-form"
     />
     <span v-for="error in v$.fname.$errors" :key="error.$uid">{{
-        error.$message
-      }}</span>
+      error.$message
+    }}</span>
+
     <BaseInput
       v-model="formData.lname"
       label="Last Name"
       type="text"
-      class="login-form"
     />
     <span v-for="error in v$.lname.$errors" :key="error.$uid">{{
-        error.$message
-      }}</span>
+      error.$message
+    }}</span>
+
     <BaseInput
       v-model="formData.email"
       label="Email"
       type="text"
-      class="login-form"
     />
     <span v-for="error in v$.email.$errors" :key="error.$uid">{{
-        error.$message
-      }}</span>
-      <br>
+      error.$message
+    }}</span>
+
+    <br />
     <button>Submit</button>
   </form>
 </template>

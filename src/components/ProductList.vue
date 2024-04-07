@@ -5,12 +5,13 @@
     <p>Price: €{{ price }}</p>
     <p id="count">Stock: {{ stock }}</p>
     <button @click="$emit('buyProduct', product_id, name, descripton, price, stock)">Buy</button>
-    <button @click="$emit('editProduct', product_id)">Edit</button>
-    <button @click="$emit('deleteProduct', product_id)">Delete</button>
+    <button v-if="useAuthStore.role === 'admin'" @click="$emit('editProduct', product_id, name, descripton, price, stock)">Edit</button>
+    <button v-if="useAuthStore.role === 'admin'" @click="$emit('deleteProduct', product_id)">Delete</button>
   </div>
 </template>
 
 <script setup>
+import { useAuthStore } from '@/stores/AuthStore';
 defineProps({
   name: String,
   descripton: String,

@@ -1,0 +1,51 @@
+<template>
+  <form @submit.prevent="editUser">
+    <h2>{{ useProductStore.name }}</h2>
+    <p>{{ useProductStore.description }}</p>
+
+    <BaseInput v-model="formData.stock" label="Product stock" type="text" />
+    <span v-for="error in v$.stock.$errors" :key="error.$uid">{{
+      error.$message
+    }}</span>
+
+    <br />
+    <button>Submit</button>
+  </form>
+</template>
+
+<script setup>
+import { reactive, computed } from "vue";
+import router from "@/router";
+import BaseInput from "@/components/BaseInput.vue";
+import useVuelidate from "@vuelidate/core";
+import { required, email } from "@vuelidate/validators";
+import { useProductStore } from "@/stores/ProductStore";
+import { supabase } from "@/supabase/config";
+
+const formData = reactive({
+  stock: useProductStore.stock,
+});
+
+const rules = computed(() => {
+  return {
+    stock: { required },
+  };
+});
+
+const v$ = useVuelidate(rules, formData);
+
+async function editUser() {
+  const result = await v$.value.$validate();
+  if (result) {
+    const { data, error } = await supabase
+      .from("products")
+      .update({ product_stock: formData.stock })
+      .eq("id", useProductStore.id);
+  } else {
+    alert("error, form not submitted");
+  }
+  router.push("product");
+}
+</script>
+
+<style lang="scss" scoped></style>

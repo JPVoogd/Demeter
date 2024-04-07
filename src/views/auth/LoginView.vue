@@ -69,7 +69,7 @@ async function login() {
       useAuthStore.fname = account.value.data.session.user.user_metadata.fname;
       useAuthStore.lname = account.value.data.session.user.user_metadata.lname;
       useAuthStore.email = account.value.data.session.user.email;
-      useAuthStore.role = account.value.data.session.user.role;
+      useAuthStore.role = account.value.data.session.user.user_metadata.role;
 
       router.push("user");
     }

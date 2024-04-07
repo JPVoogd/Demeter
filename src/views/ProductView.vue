@@ -93,7 +93,13 @@ async function buyProduct(product_id, name, descripton, price, stock) {
   }
 }
 
-function editProduct(product_id) {
+function editProduct(product_id, name, descripton, price, stock) {
+  useProductStore.id = product_id;
+    useProductStore.name = name;
+    useProductStore.description = descripton;
+    useProductStore.price = price;
+    useProductStore.stock = stock;
+    router.push('edit-product')
   console.log(product_id);
 }
 

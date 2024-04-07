@@ -3,7 +3,7 @@
   <!-- Payment section  -->
   <div v-if="useProductStore.card">
     <p>You are buying: {{ useProductStore.name }}</p>
-    <p>The price is: ${{ useProductStore.price }},-</p>
+    <p>The price is: €{{ useProductStore.price }},-</p>
     <label
       >Enter your card details: <input type="text" v-model="cardNumber"
     /></label>
@@ -12,7 +12,7 @@
 
   <div v-if="useProductStore.cash">
     <p>You are buying: {{ useProductStore.name }}</p>
-    <p>The price is: ${{ useProductStore.price }},-</p>
+    <p>The price is: €{{ useProductStore.price }}</p>
     <label
       >Enter cash amount: <input type="text" v-model="inputPayment"
     /></label>
