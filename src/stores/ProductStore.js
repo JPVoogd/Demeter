@@ -6,4 +6,6 @@ export const useProductStore = reactive({
   description: "",
   price: "",
   stock: "",
+  card: false,
+  cash: false,
 })

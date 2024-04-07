@@ -1,25 +1,6 @@
 <template>
   <router-link to="/shopping">Go to Shopping</router-link>
 
-  <!-- Payment section  -->
-  <div v-if="payCard">
-    <h1>Hello, {{ useAuthStore.fname }}</h1>
-    <p>You are buying: {{ useProductStore.name }}</p>
-    <p>The price is: ${{ useProductStore.price }},-</p>
-    <label
-      >Enter your card details: <input type="text" v-model="cardNumber"
-    /></label>
-    <button @click="paymentCard(cardNumber)">Pay now!</button>
-  </div>
-
-  <div v-if="payCash">
-    <h1>Hello, {{ useAuthStore.fname }}</h1>
-    <p>You are buying: {{ useProductStore.name }}</p>
-    <p>The price is: ${{ useProductStore.price }},-</p>
-    <label>Enter cash amount: <input type="text" v-model="inputPayment" /></label>
-    <button @click="paymentCash(inputPayment)">Pay now!</button>
-  </div>
-
   <!-- Product list -->
   <div class="container">
     <ProductList
@@ -44,20 +25,20 @@
         </template>
         <template #body>
           <p>{{ useProductStore.description }}</p>
-          <p>Price: {{ useProductStore.price }}</p>
+          <p>Price: €{{ useProductStore.price }}</p>
           <div>
             <button
               @click="
-                payCard = true;
                 showModal = false;
+                goToCheckoutCard();
               "
             >
               Pay Card
             </button>
             <button
               @click="
-                payCash = true;
                 showModal = false;
+                goToCheckoutCash();
               "
             >
               Pay Cash
@@ -76,45 +57,20 @@ import { useAuthStore } from "@/stores/AuthStore";
 import { useProductStore } from "@/stores/ProductStore";
 import ProductList from "@/components/ProductList.vue";
 import modal from "@/components/Modal.vue";
+import router from "@/router";
 
 const products = ref([]);
 
 const showModal = ref(false);
-const payCard = ref(false);
-const payCash = ref(false);
 
-async function paymentCard(cardNumber) {
-  alert(
-    "The following amount: " +
-      useProductStore.price +
-      " will be taken from account: " +
-      cardNumber
-  );
-  const { data, error } = await supabase
-    .from("products")
-    .update({ product_stock: useProductStore.stock - 1 })
-    .eq("id", useProductStore.id);
-  if (error) {
-    console.error("Error updating product stock:", error);
-  } else {
-    window.location.reload();
-    console.log("Product purchased successfully!");
-  }
+function goToCheckoutCard() {
+  useProductStore.card = true
+  router.push('shopping');
 }
 
-async function paymentCash(inputPayment) {
-  const change = inputPayment - useProductStore.price;
-  alert("Your change is: $" + parseFloat(change) + ",-");
-  const { data, error } = await supabase
-    .from("products")
-    .update({ product_stock: useProductStore.stock - 1 })
-    .eq("id", useProductStore.id);
-  if (error) {
-    console.error("Error updating product stock:", error);
-  } else {
-    window.location.reload();
-    console.log("Product purchased successfully!");
-  }
+function goToCheckoutCash() {
+  useProductStore.cash = true
+  router.push('shopping');
 }
 
 async function getProducts() {

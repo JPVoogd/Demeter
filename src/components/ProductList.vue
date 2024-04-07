@@ -2,7 +2,7 @@
   <div class="container">
     <h2>{{ name }}</h2>
     <p>{{ descripton }}</p>
-    <p>Price: ${{ price }}</p>
+    <p>Price: €{{ price }}</p>
     <p id="count">Stock: {{ stock }}</p>
     <button @click="$emit('buyProduct', product_id, name, descripton, price, stock)">Buy</button>
     <button @click="$emit('editProduct', product_id)">Edit</button>

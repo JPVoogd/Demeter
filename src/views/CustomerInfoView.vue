@@ -1,35 +1,64 @@
 <template>
   <router-link to="/payment">go to payment</router-link>
-  <form action="" class="margin">
-    <label for="fname">First name</label>
-    <input type="text" id="fname" name="fname">
-
-    <label for="lname">Last name</label>
-    <input type="text" id="lname" name="lname"><br><br>
-
-
-    <label for="address">Adress</label>
-    <input type="text" id="address" name="address"><br><br>
-
-    <label for="city">Town / City</label>
-    <input type="text" id="city" name="city"><br><br>
-
-    <label for="state">State / County</label>
-    <input type="text" id="state" name="state"><br><br>
-
-    <label for="postcode">Postcode</label>
-    <input type="text" id="postcode" name="postcode"><br><br>
-
-    <label for="phone">Phone</label>
-    <input type="tel" id="phone" name="phone"><br><br>
-
-    <label for="email">Email address</label>
-    <input type="text" id="email" name="email"><br><br>
-  </form>
+  <div class="container">
+    <h2>{{ useProductStore.name }}</h2>
+    <p>{{ useProductStore.description }}</p>
+    <p>You have payed!</p>
+    <button v-if="openMaken" @click="openContainer">Open the container</button>
+    <button v-if="takeOut" @click="takeOutProduct">Take out the {{ useProductStore.name }}</button>
+    <button v-if="close" @click="closeContainer">Close the container</button>
+  </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
+import { supabase } from "@/supabase/config";
+import { useProductStore } from "@/stores/ProductStore";
+import router from "@/router";
 
+const openMaken = ref(true)
+const takeOut = ref(false)
+const close = ref(false)
+
+function openContainer() {
+  openMaken.value = false
+  takeOut.value = true
+}
+
+function takeOutProduct() {
+  takeOut.value = false
+  close.value = true
+}
+
+async function closeContainer() {
+  close.value = false
+  const { data, error } = await supabase
+    .from("products")
+    .update({ product_stock: useProductStore.stock - 1 })
+    .eq("id", useProductStore.id);
+  if (error) {
+    console.error("Error updating product stock:", error);
+  } else {
+    console.log("Product updated successfully!");
+    router.push('thank-you')
+  }
+}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container {
+  width: 300px;
+  height: 300px;
+  border: 2px black solid;
+  margin: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.product > p {
+  margin: 0.3rem;
+  padding: 0.3rem;
+}
+</style>
