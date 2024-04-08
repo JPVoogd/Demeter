@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <div class="products">
     <h2>{{ name }}</h2>
-    <p>{{ descripton }}</p>
-    <p>Price: €{{ price }}</p>
-    <p id="count">Stock: {{ stock }}</p>
+    <p class="product">{{ descripton }}</p>
+    <p class="product">Price: €{{ price }}</p>
+    <p class="product">Stock: {{ stock }}</p>
     <button @click="$emit('buyProduct', product_id, name, descripton, price, stock)">Buy</button>
     <button v-if="useAuthStore.role === 'admin'" @click="$emit('editProduct', product_id, name, descripton, price, stock)">Edit</button>
     <button v-if="useAuthStore.role === 'admin'" @click="$emit('deleteProduct', product_id)">Delete</button>
@@ -22,19 +22,26 @@ defineProps({
 </script>
 
 <style scoped>
-.container {
-  width: 300px;
-  height: 300px;
+.products {
+  width: 350px;
+  height: 350px;
   border: 2px black solid;
-  margin: 0.4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 1rem;
+
 }
 
-.product > p {
+.products > h2 {
+  margin: 0.8rem;
+  font-size: 2rem;
+}
+
+.products > p {
   margin: 0.3rem;
   padding: 0.3rem;
+  font-size: 1.2rem;
 }
 </style>

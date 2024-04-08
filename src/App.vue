@@ -41,7 +41,7 @@ h1 {
   text-align: center;
   padding: 2rem 0;
   font-size: 3rem;
-  background: linear-gradient(90deg, #06629b, #01dd96);
+  background: linear-gradient(90deg, #085889, #089c6d);
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
