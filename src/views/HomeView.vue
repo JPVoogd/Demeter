@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Lorem</h2>
+    <h1>Lorem</h1>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. A, incidunt
       quibusdam? Consequuntur, illo itaque quibusdam magni iste culpa neque in
@@ -20,16 +20,8 @@
         perspiciatis ex pariatur quis labore reprehenderit ipsam necessitatibus
         culpa sapiente hic!
       </p>
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/GEX37KUltmA?si=gy9KKJFuPsBYR1pl"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-      ></iframe>
+
+      <iframe width="700" height="330" :src="link"></iframe>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
         excepturi alias odio corporis nesciunt! Quae quisquam reiciendis eius
@@ -40,7 +32,9 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const link = "https://www.youtube.com/embed/GEX37KUltmA?si=gy9KKJFuPsBYR1pl";
+</script>
 
 <style lang="scss" scoped>
 div > h2 {
@@ -66,5 +60,9 @@ div > p {
   height: 300px;
   margin: 0 1rem;
   width: 25%;
+}
+
+iframe {
+  border-radius: 20px;
 }
 </style>
