@@ -55,16 +55,16 @@ const link = "https://www.youtube.com/embed/GEX37KUltmA?si=gy9KKJFuPsBYR1pl";
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 3rem 0.5rem 1rem;
+  margin: 2rem 0.5rem 1rem;
 }
 
 .content > p {
   display: flex;
   align-items: center;
   text-align: center;
-  height: 300px;
   margin: 0 1rem;
   width: 25%;
+  padding: 3rem 1rem;
 }
 
 iframe {
