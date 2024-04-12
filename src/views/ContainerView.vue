@@ -1,13 +1,13 @@
 <template>
-  <div class="container">
+  <div class="product-container linear-border">
     <h2>{{ useProductStore.name }}</h2>
     <p>{{ useProductStore.description }}</p>
     <p>You have payed!</p>
-    <button v-if="openMaken" @click="openContainer">Open the container</button>
+    <button v-if="openMaken" @click="openContainer">Open</button>
     <button v-if="takeOut" @click="takeOutProduct">
-      Take out the {{ useProductStore.name }}
+      Take {{ useProductStore.name }}
     </button>
-    <button v-if="close" @click="closeContainer">Close the container</button>
+    <button v-if="close" @click="closeContainer">Close</button>
   </div>
 </template>
 
@@ -61,10 +61,9 @@ async function updatePurchaseHistory() {
 </script>
 
 <style lang="scss" scoped>
-.container {
+.product-container {
   width: 300px;
   height: 300px;
-  border: 2px black solid;
   margin: 0.4rem;
   display: flex;
   flex-direction: column;
@@ -72,7 +71,12 @@ async function updatePurchaseHistory() {
   align-items: center;
 }
 
-.product > p {
+.product-container > h2 {
+  margin: 0.3rem;
+  padding: 0.3rem;
+}
+
+.product-container > p {
   margin: 0.3rem;
   padding: 0.3rem;
 }

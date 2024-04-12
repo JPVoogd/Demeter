@@ -1,21 +1,28 @@
 <template>
-  <h2>Please pay here</h2>
+  <h1>Please pay here</h1>
+
   <!-- Payment section  -->
-  <div v-if="useProductStore.card">
+  <div v-if="useProductStore.card" class="payment">
     <p>You are buying: {{ useProductStore.name }}</p>
     <p>The price is: €{{ useProductStore.price }},-</p>
-    <label
-      >Enter your card details: <input type="text" v-model="cardNumber"
+    <label>
+      <input
+        type="text"
+        class="linear-payment payment-form"
+        v-model="cardNumber"
+        placeholder="Enter your card details"
     /></label>
+    <br />
     <button @click="paymentCard(cardNumber)">Pay now!</button>
   </div>
 
   <div v-if="useProductStore.cash">
     <p>You are buying: {{ useProductStore.name }}</p>
     <p>The price is: €{{ useProductStore.price }}</p>
-    <label
-      >Enter cash amount: <input type="text" v-model="inputPayment"
+    <label>
+      <input type="text" class="linear-payment payment-form" v-model="inputPayment" placeholder="Enter cash amount"
     /></label>
+    <br />
     <button @click="paymentCash(inputPayment)">Pay now!</button>
   </div>
 </template>
@@ -42,4 +49,24 @@ async function paymentCash(inputPayment) {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.payment {
+  text-align: center;
+}
+
+.payment > p {
+  padding: 1rem;
+}
+
+.payment-form {
+  padding: 0.7rem;
+  margin: 0.5rem;
+}
+
+.linear-payment {
+  background: linear-gradient(to right bottom, #ebe9e9, #bbceee) padding-box,
+  linear-gradient(90deg, #085889, #089c6d) border-box;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+</style>

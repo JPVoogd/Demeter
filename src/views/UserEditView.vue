@@ -1,5 +1,6 @@
 <template>
-  <form @submit.prevent="editUser">
+  <h1>Edit User</h1>
+  <form @submit.prevent="editUser" class="user-edit-form">
     <BaseInput
       v-model="formData.fname"
       label="First Name"
@@ -28,7 +29,7 @@
     }}</span>
 
     <br />
-    <button>Submit</button>
+    <button>Edit</button>
   </form>
 </template>
 
@@ -78,4 +79,8 @@ async function editUser() {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.user-edit-form {
+  text-align: center;
+}
+</style>

@@ -1,15 +1,16 @@
 <template>
-  <form @submit.prevent="editUser">
-    <h2>{{ useProductStore.name }}</h2>
+  <h1>Edit Product</h1>
+  <form @submit.prevent="editUser" class="edit-product-form">
+    <h2>You are editing: {{ useProductStore.name }}</h2>
     <p>{{ useProductStore.description }}</p>
 
-    <BaseInput v-model="formData.stock" label="Product stock" type="text" />
+    <BaseInput v-model="formData.stock" label="Product stock:" type="text" />
     <span v-for="error in v$.stock.$errors" :key="error.$uid">{{
       error.$message
     }}</span>
 
     <br />
-    <button>Submit</button>
+    <button>Edit product</button>
   </form>
 </template>
 
@@ -48,4 +49,16 @@ async function editUser() {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.edit-product-form {
+  text-align: center;
+}
+
+.edit-product-form > h2 {
+  padding: 1rem 0;
+}
+.edit-product-form > p {
+  padding: 1rem 0;
+}
+
+</style>

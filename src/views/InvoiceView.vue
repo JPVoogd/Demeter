@@ -4,13 +4,14 @@
       <tr>
         <th>Invoice ID</th>
         <th>Product name</th>
+        <th>Product price</th>
         <th>Purchase date</th>
       </tr>
     </thead>
     <tbody v-for="(invoice, index) in invoicesAdmin" :key="index">
       <td>{{ invoice.id }}</td>
       <td>{{ invoice.products.product_name }}</td>
-      <td>{{ invoice.products.product_price }}</td>
+      <td>€{{ invoice.products.product_price }}</td>
       <td>{{ invoice.time.slice(0, 5) }} - {{ invoice.date }}</td>
     </tbody>
   </table>

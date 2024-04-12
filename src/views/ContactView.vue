@@ -1,21 +1,21 @@
 <template>
   <div>
-    <h1>Take contact with the farmers</h1>
-    <form @submit.prevent="login">
-      <BaseInput v-model="formData.name" label="Your name" type="text" />
+    <h1>Contact us</h1>
+    <form @submit.prevent="login" class="contact-form">
+      <BaseInput v-model="formData.name" type="text" placeholder="Your name" />
       <span v-for="error in v$.name.$errors" :key="error.$uid">{{
         error.$message
       }}</span>
 
-      <BaseInput v-model="formData.email" label="Your email" type="email" />
+      <BaseInput v-model="formData.email" type="email" placeholder="Your email" />
       <span v-for="error in v$.email.$errors" :key="error.$uid">{{
         error.$message
       }}</span>
 
       <BaseInput
         v-model="formData.phoneNumber"
-        label="Your phone number"
         type="phone"
+        placeholder="Your phone number"
       />
       <span v-for="error in v$.phoneNumber.$errors" :key="error.$uid">{{
         error.$message
@@ -23,8 +23,8 @@
 
       <BaseInput
         v-model="formData.message"
-        label="Your message (optional)"
         type="textarea"
+        placeholder="Your message (optional)"
       />
       <span v-for="error in v$.message.$errors" :key="error.$uid">{{
         error.$message
@@ -70,4 +70,8 @@ async function login() {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.contact-form {
+  text-align: center;
+}
+</style>

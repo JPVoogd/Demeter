@@ -1,21 +1,19 @@
 <template>
   <div>
     <h1>Login</h1>
-    <form @submit.prevent="login">
+    <form @submit.prevent="login" class="login-form">
       <BaseInput
         v-model="formData.email"
-        label="Email"
         type="email"
-        class="login-form"
+        placeholder="Email"
       />
       <span v-for="error in v$.email.$errors" :key="error.$uid">{{
         error.$message
       }}</span>
       <BaseInput
         v-model="formData.password"
-        label="Password"
         type="password"
-        class="login-form"
+        placeholder="Password"
       />
       <span v-for="error in v$.password.$errors" :key="error.$uid">{{
         error.$message
@@ -79,4 +77,8 @@ async function login() {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.login-form {
+  text-align: center;
+}
+</style>

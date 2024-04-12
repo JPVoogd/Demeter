@@ -1,7 +1,7 @@
 <template>
     <Transition name="modal">
       <div v-if="show" class="modal-mask">
-        <div class="modal-container">
+        <div class="modal-container linear-border">
           <div class="modal-header">
             <slot name="header">default header</slot>
           </div>
@@ -44,18 +44,12 @@ const props = defineProps({
 }
 
 .modal-container {
-  width: 300px;
+  width: 500px;
   margin: auto;
   padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 2px;
+  border-radius: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
-}
-
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
 }
 
 .modal-body {
@@ -65,15 +59,6 @@ const props = defineProps({
 .modal-default-button {
   float: right;
 }
-
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
 
 .modal-enter-from {
   opacity: 0;

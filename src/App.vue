@@ -34,16 +34,24 @@ main {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  
+  overflow-x: hidden;
 }
 
 h1 {
   text-align: center;
   padding: 2rem 0;
-  font-size: 3rem;
+  font-size: 2.75rem;
   background: linear-gradient(90deg, #085889, #089c6d);
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.linear-border {
+  background: linear-gradient(to right bottom, #ebe9e9, #bbceee) padding-box,
+  linear-gradient(90deg, #085889, #089c6d) border-box;
+  border-radius: 50px;
+  border: 4px solid transparent;
+  box-shadow: 0px 5px 20px 5px rgba(0,0,0,0.50);
 }
 
 button {
@@ -57,8 +65,7 @@ button {
 }
 
 button:hover {
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0px 2px 10px 2px rgba(0,0,0,0.50);
 }
 
 

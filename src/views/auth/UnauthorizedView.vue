@@ -1,12 +1,25 @@
 <template>
   <div>
-    <h1>You are not allowed here, login to acces</h1>
-    <router-link to="/login">Go to login page</router-link>
+    <h1>Unauthorized</h1>
+    <section class="linear-border unauthorized">
+      <p>You are not allowed here</p>
+    <router-link to="/"> Go back to Home </router-link>
+    </section>
+
   </div>
 </template>
 
-<script setup>
+<script setup></script>
 
-</script>
+<style lang="scss" scoped>
+.unauthorized {
+padding: 4rem 2rem;
+text-align: center;
+width: 50%;
+margin: 3rem auto;
+}
 
-<style lang="scss" scoped></style>
+.unauthorized > p {
+  margin-bottom: 3rem;
+}
+</style>

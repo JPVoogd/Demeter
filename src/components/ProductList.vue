@@ -1,5 +1,5 @@
 <template>
-  <div class="products">
+  <div class="products linear-border">
     <h2>{{ name }}</h2>
     <p class="product">{{ descripton }}</p>
     <p class="product">Price: €{{ price }}</p>
@@ -23,15 +23,13 @@ defineProps({
 
 <style scoped>
 .products {
-  width: 350px;
-  height: 350px;
-  border: 2px black solid;
+  width: 325px;
+  min-height: 325px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 1rem;
-
 }
 
 .products > h2 {

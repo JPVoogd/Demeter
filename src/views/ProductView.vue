@@ -1,7 +1,7 @@
 <template>
   <h1>Demeter's Vending Machine</h1>
   <!-- Product list -->
-  <div class="container">
+  <div class="product-view">
     <ProductList
       v-for="product in products"
       :name="product.product_name"
@@ -20,7 +20,7 @@
     <Teleport to="body">
       <modal :show="showModal" @close="showModal = false">
         <template #header>
-          <h3>Buy: {{ useProductStore.name }}</h3>
+          <h3>You are buying: {{ useProductStore.name }}</h3>
         </template>
         <template #body>
           <p>{{ useProductStore.description }}</p>
@@ -95,12 +95,11 @@ async function buyProduct(product_id, name, descripton, price, stock) {
 
 function editProduct(product_id, name, descripton, price, stock) {
   useProductStore.id = product_id;
-    useProductStore.name = name;
-    useProductStore.description = descripton;
-    useProductStore.price = price;
-    useProductStore.stock = stock;
-    router.push('edit-product')
-  console.log(product_id);
+  useProductStore.name = name;
+  useProductStore.description = descripton;
+  useProductStore.price = price;
+  useProductStore.stock = stock;
+  router.push("edit-product");
 }
 
 async function deleteProduct(product_id) {
@@ -125,12 +124,16 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.container {
+.product-view {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   align-content: center;
-  margin: 0.5rem;
+  padding-bottom: 2rem;
+}
+
+.product-view > button {
+  height: 150px;
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
-  <h1>These are our fantastic farmers!</h1>
+  <h1>About us</h1>
   <div class="about">
     <div>
       <img src="https://placehold.co/300x450" alt="Picture of the farmers" />
-      <p>
+      <p class="linear-border">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
         molestias quisquam laudantium non saepe? Inventore facilis vel
         blanditiis nulla quasi ipsa eligendi enim consequuntur excepturi, sed
@@ -12,7 +12,7 @@
     </div>
     <div>
       <img src="https://placehold.co/300x450" alt="Picture of the farmers" />
-      <p>
+      <p class="linear-border">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
         molestias quisquam laudantium non saepe? Inventore facilis vel
         blanditiis nulla quasi ipsa eligendi enim consequuntur excepturi, sed
@@ -21,7 +21,7 @@
     </div>
     <div>
       <img src="https://placehold.co/300x450" alt="Picture of the farmers" />
-      <p>
+      <p class="linear-border">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
         molestias quisquam laudantium non saepe? Inventore facilis vel
         blanditiis nulla quasi ipsa eligendi enim consequuntur excepturi, sed
@@ -51,7 +51,8 @@ h2 {
 }
 
 .about > div > p {
-  padding: 0.5rem 1rem;
+  padding: 1rem;
+  margin: 1rem;
 }
 
 .about > div > img {

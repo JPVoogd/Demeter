@@ -1,12 +1,11 @@
 <template>
   <div>
-    <h1>Sign Up</h1>
-    <form @submit.prevent="createUser">
+    <h1>Make an Account</h1>
+    <form @submit.prevent="createUser" class="signup-form">
       <BaseInput
         v-model="formData.fname"
-        label="First name"
         type="text"
-        class="login-form"
+        placeholder="First name"
       />
       <span v-for="error in v$.fname.$errors" :key="error.$uid">{{
         error.$message
@@ -14,9 +13,8 @@
 
       <BaseInput
         v-model="formData.lname"
-        label="Last name"
         type="text"
-        class="login-form"
+        placeholder="Last name"
       />
       <span v-for="error in v$.lname.$errors" :key="error.$uid">{{
         error.$message
@@ -24,9 +22,8 @@
 
       <BaseInput
         v-model="formData.email"
-        label="Email"
         type="email"
-        class="login-form"
+        placeholder="Email"
       />
       <span v-for="error in v$.email.$errors" :key="error.$uid">{{
         error.$message
@@ -34,9 +31,8 @@
 
       <BaseInput
         v-model="formData.password"
-        label="Password"
         type="password"
-        class="login-form"
+        placeholder="Password"
       />
       <span v-for="error in v$.password.$errors" :key="error.$uid">{{
         error.$message
@@ -44,9 +40,8 @@
 
       <BaseInput
         v-model="formData.confirmPassword"
-        label="Confirm Password"
         type="password"
-        class="login-form"
+        placeholder="Confirm Password"
       />
       <span v-for="error in v$.confirmPassword.$errors" :key="error.$uid">{{
         error.$message
@@ -116,4 +111,8 @@ async function createUser() {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.signup-form {
+  text-align: center;
+}
+</style>
