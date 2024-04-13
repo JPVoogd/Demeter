@@ -3,15 +3,15 @@
   <!-- Product list -->
   <div class="product-view">
     <ProductList
-      v-for="product in products"
-      :name="product.product_name"
-      :product_id="product.id"
-      :descripton="product.product_description"
-      :price="product.product_price"
-      :stock="product.product_stock"
-      v-on:buyProduct="buyProduct"
-      v-on:editProduct="editProduct"
-      v-on:deleteProduct="deleteProduct"
+        v-for="product in products"
+        :name="product.product_name"
+        :product_id="product.id"
+        :description="product.product_description"
+        :price="product.product_price"
+        :stock="product.product_stock"
+        v-on:buyProduct="buyProduct"
+        v-on:editProduct="editProduct"
+        v-on:deleteProduct="deleteProduct"
     />
   </div>
 
@@ -27,7 +27,7 @@
           <p>Price: €{{ useProductStore.price }}</p>
           <div>
             <button
-              @click="
+                @click="
                 showModal = false;
                 goToCheckoutCard();
               "
@@ -35,7 +35,7 @@
               Pay Card
             </button>
             <button
-              @click="
+                @click="
                 showModal = false;
                 goToCheckoutCash();
               "
@@ -50,10 +50,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { supabase } from "@/supabase/config.js";
-import { useAuthStore } from "@/stores/AuthStore";
-import { useProductStore } from "@/stores/ProductStore";
+import {ref, onMounted} from "vue";
+import {supabase} from "@/supabase/config.js";
+import {useAuthStore} from "@/stores/AuthStore";
+import {useProductStore} from "@/stores/ProductStore";
 import ProductList from "@/components/ProductList.vue";
 import modal from "@/components/Modal.vue";
 import router from "@/router";
@@ -73,10 +73,10 @@ function goToCheckoutCash() {
 }
 
 async function getProducts() {
-  const { data } = await supabase
-    .from("products")
-    .select()
-    .order("id", { ascending: true });
+  const {data} = await supabase
+      .from("products")
+      .select()
+      .order("id", {ascending: true});
   products.value = data;
 }
 
@@ -104,10 +104,10 @@ function editProduct(product_id, name, descripton, price, stock) {
 
 async function deleteProduct(product_id) {
   try {
-    const { data, error } = await supabase
-      .from("products")
-      .delete()
-      .eq("id", product_id);
+    const {data, error} = await supabase
+        .from("products")
+        .delete()
+        .eq("id", product_id);
     if (error) {
       throw error;
     }

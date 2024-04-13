@@ -12,11 +12,11 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { supabase } from "@/supabase/config";
-import { useProductStore } from "@/stores/ProductStore";
+import {ref} from "vue";
+import {supabase} from "@/supabase/config";
+import {useProductStore} from "@/stores/ProductStore";
 import router from "@/router";
-import { useAuthStore } from "@/stores/AuthStore";
+import {useAuthStore} from "@/stores/AuthStore";
 
 const openMaken = ref(true);
 const takeOut = ref(false);
@@ -34,10 +34,10 @@ function takeOutProduct() {
 
 async function closeContainer() {
   close.value = false;
-  const { data, error } = await supabase
-    .from("products")
-    .update({ product_stock: useProductStore.stock - 1 })
-    .eq("id", useProductStore.id);
+  const {data, error} = await supabase
+      .from("products")
+      .update({product_stock: useProductStore.stock - 1})
+      .eq("id", useProductStore.id);
   if (error) {
     console.error("Error updating product stock:", error);
   } else {
@@ -47,10 +47,10 @@ async function closeContainer() {
 }
 
 async function updatePurchaseHistory() {
-  const { data, error } = await supabase
-    .from("purchase_history")
-    .insert([{ user_id: useAuthStore.userId, product_id: useProductStore.id }])
-    .select();
+  const {data, error} = await supabase
+      .from("purchase_history")
+      .insert([{user_id: useAuthStore.userId, product_id: useProductStore.id}])
+      .select();
   if (error) {
     console.error("Error Creating History:", error);
   } else {

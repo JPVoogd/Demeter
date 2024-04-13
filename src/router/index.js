@@ -27,12 +27,6 @@ const routes = [
       import("../views/ContactView.vue"),
   },
   {
-    path: "/contact-form",
-    name: "contact-form",
-    component: () =>
-      import("../views/ContactformView.vue"),
-  },
-  {
     path: "/container",
     name: "container",
     component: () =>

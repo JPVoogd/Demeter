@@ -1,10 +1,10 @@
 <template>
   <main>
     <div class="container">
-    <HeaderComponent></HeaderComponent>
-    <router-view />
-    <FooterComponent></FooterComponent>
-  </div>
+      <HeaderComponent></HeaderComponent>
+      <router-view/>
+      <FooterComponent></FooterComponent>
+    </div>
   </main>
 </template>
 
@@ -21,7 +21,7 @@ import FooterComponent from "@/components/Footer.vue";
   padding: 0;
   box-sizing: border-box;
   font-family: helvetica, poppins, sans-serif;
-  
+
 }
 
 main {
@@ -51,7 +51,7 @@ h1 {
   linear-gradient(90deg, #085889, #089c6d) border-box;
   border-radius: 50px;
   border: 4px solid transparent;
-  box-shadow: 0px 5px 20px 5px rgba(0,0,0,0.50);
+  box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.50);
 }
 
 button {
@@ -65,7 +65,7 @@ button {
 }
 
 button:hover {
-  box-shadow: 0px 2px 10px 2px rgba(0,0,0,0.50);
+  box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.50);
 }
 
 

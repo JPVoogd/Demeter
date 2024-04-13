@@ -5,12 +5,14 @@
     <p>Last name: {{ useAuthStore.lname }}</p>
     <p>Email: {{ useAuthStore.email }}</p>
     <p>role: {{ useAuthStore.role }}</p>
-    <button><router-link class="user-edit-btn" to="/user-edit">Edit User</router-link></button>
+    <button>
+      <router-link class="user-edit-btn" to="/user-edit">Edit User</router-link>
+    </button>
   </div>
 </template>
 
 <script setup>
-import { useAuthStore } from "@/stores/AuthStore";
+import {useAuthStore} from "@/stores/AuthStore";
 
 </script>
 

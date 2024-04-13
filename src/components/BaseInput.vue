@@ -2,10 +2,10 @@
   <div>
     <label v-if="label"> {{ label }}</label>
     <input
-      :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
-      v-bind="$attrs"
-      class="linear-input input-form"
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
+        v-bind="$attrs"
+        class="linear-input input-form"
     />
   </div>
 </template>

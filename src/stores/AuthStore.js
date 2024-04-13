@@ -1,9 +1,9 @@
-import { reactive } from 'vue'
+import {reactive} from 'vue'
 
 export const useAuthStore = reactive({
-  userId: "",
-  fname: "",
-  lname: "",
-  email: "",
-  role: "",
+    userId: "",
+    fname: "",
+    lname: "",
+    email: "",
+    role: "",
 })

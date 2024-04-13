@@ -3,34 +3,34 @@
     <h1>Login</h1>
     <form @submit.prevent="login" class="login-form">
       <BaseInput
-        v-model="formData.email"
-        type="email"
-        placeholder="Email"
+          v-model="formData.email"
+          type="email"
+          placeholder="Email"
       />
       <span v-for="error in v$.email.$errors" :key="error.$uid">{{
-        error.$message
-      }}</span>
+          error.$message
+        }}</span>
       <BaseInput
-        v-model="formData.password"
-        type="password"
-        placeholder="Password"
+          v-model="formData.password"
+          type="password"
+          placeholder="Password"
       />
       <span v-for="error in v$.password.$errors" :key="error.$uid">{{
-        error.$message
-      }}</span>
-      <br />
+          error.$message
+        }}</span>
+      <br/>
       <button>Login</button>
     </form>
   </div>
 </template>
 
 <script setup>
-import { ref, reactive, computed } from "vue";
+import {ref, reactive, computed} from "vue";
 import BaseInput from "@/components/BaseInput.vue";
 import useVuelidate from "@vuelidate/core";
-import { required, email } from "@vuelidate/validators";
-import { supabase } from "@/supabase/config";
-import { useAuthStore } from "@/stores/AuthStore";
+import {required, email} from "@vuelidate/validators";
+import {supabase} from "@/supabase/config";
+import {useAuthStore} from "@/stores/AuthStore";
 import router from "@/router";
 
 const formData = reactive({
@@ -40,8 +40,8 @@ const formData = reactive({
 
 const rules = computed(() => {
   return {
-    email: { required, email },
-    password: { required },
+    email: {required, email},
+    password: {required},
   };
 });
 
@@ -52,7 +52,7 @@ const account = ref("");
 async function login() {
   const result = await v$.value.$validate();
   if (result) {
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const {data, error} = await supabase.auth.signInWithPassword({
       email: formData.email,
       password: formData.password,
     });

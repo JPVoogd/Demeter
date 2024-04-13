@@ -5,11 +5,11 @@
           <div class="modal-header">
             <slot name="header">default header</slot>
           </div>
-  
+
           <div class="modal-body">
             <slot name="body">default body</slot>
           </div>
-  
+
           <div class="modal-footer">
             <slot name="footer">
               <button
@@ -22,7 +22,7 @@
       </div>
     </Transition>
   </template>
-  
+
 
 <script setup>
 const props = defineProps({
@@ -70,7 +70,6 @@ const props = defineProps({
 
 .modal-enter-from .modal-container,
 .modal-leave-to .modal-container {
-  -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
 </style>

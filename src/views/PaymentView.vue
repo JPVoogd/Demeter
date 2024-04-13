@@ -7,12 +7,12 @@
     <p>The price is: €{{ useProductStore.price }},-</p>
     <label>
       <input
-        type="text"
-        class="linear-payment payment-form"
-        v-model="cardNumber"
-        placeholder="Enter your card details"
-    /></label>
-    <br />
+          type="text"
+          class="linear-payment payment-form"
+          v-model="cardNumber"
+          placeholder="Enter your card details"
+      /></label>
+    <br/>
     <button @click="paymentCard(cardNumber)">Pay now!</button>
   </div>
 
@@ -21,19 +21,19 @@
     <p>The price is: €{{ useProductStore.price }}</p>
     <label>
       <input type="text" class="linear-payment payment-form" v-model="inputPayment" placeholder="Enter cash amount"
-    /></label>
-    <br />
+      /></label>
+    <br/>
     <button @click="paymentCash(inputPayment)">Pay now!</button>
   </div>
 </template>
 
 <script setup>
 import router from "@/router";
-import { useProductStore } from "@/stores/ProductStore";
+import {useProductStore} from "@/stores/ProductStore";
 
 async function paymentCard(cardNumber) {
   alert(
-    "The following amount: €" +
+      "The following amount: €" +
       useProductStore.price +
       " will be taken from account: " +
       cardNumber +

@@ -2,7 +2,7 @@
   <h1>About us</h1>
   <div class="about">
     <div>
-      <img src="https://placehold.co/300x450" alt="Picture of the farmers" />
+      <img src="https://placehold.co/300x450" alt="Picture of the farmers"/>
       <p class="linear-border">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
         molestias quisquam laudantium non saepe? Inventore facilis vel
@@ -11,7 +11,7 @@
       </p>
     </div>
     <div>
-      <img src="https://placehold.co/300x450" alt="Picture of the farmers" />
+      <img src="https://placehold.co/300x450" alt="Picture of the farmers"/>
       <p class="linear-border">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
         molestias quisquam laudantium non saepe? Inventore facilis vel
@@ -20,7 +20,7 @@
       </p>
     </div>
     <div>
-      <img src="https://placehold.co/300x450" alt="Picture of the farmers" />
+      <img src="https://placehold.co/300x450" alt="Picture of the farmers"/>
       <p class="linear-border">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
         molestias quisquam laudantium non saepe? Inventore facilis vel

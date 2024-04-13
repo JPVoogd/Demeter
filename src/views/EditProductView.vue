@@ -4,24 +4,24 @@
     <h2>You are editing: {{ useProductStore.name }}</h2>
     <p>{{ useProductStore.description }}</p>
 
-    <BaseInput v-model="formData.stock" label="Product stock:" type="text" />
+    <BaseInput v-model="formData.stock" label="Product stock:" type="text"/>
     <span v-for="error in v$.stock.$errors" :key="error.$uid">{{
-      error.$message
-    }}</span>
+        error.$message
+      }}</span>
 
-    <br />
+    <br/>
     <button>Edit product</button>
   </form>
 </template>
 
 <script setup>
-import { reactive, computed } from "vue";
+import {reactive, computed} from "vue";
 import router from "@/router";
 import BaseInput from "@/components/BaseInput.vue";
 import useVuelidate from "@vuelidate/core";
-import { required, email } from "@vuelidate/validators";
-import { useProductStore } from "@/stores/ProductStore";
-import { supabase } from "@/supabase/config";
+import {required, email} from "@vuelidate/validators";
+import {useProductStore} from "@/stores/ProductStore";
+import {supabase} from "@/supabase/config";
 
 const formData = reactive({
   stock: useProductStore.stock,
@@ -29,7 +29,7 @@ const formData = reactive({
 
 const rules = computed(() => {
   return {
-    stock: { required },
+    stock: {required},
   };
 });
 
@@ -38,10 +38,10 @@ const v$ = useVuelidate(rules, formData);
 async function editUser() {
   const result = await v$.value.$validate();
   if (result) {
-    const { data, error } = await supabase
-      .from("products")
-      .update({ product_stock: formData.stock })
-      .eq("id", useProductStore.id);
+    const {data, error} = await supabase
+        .from("products")
+        .update({product_stock: formData.stock})
+        .eq("id", useProductStore.id);
   } else {
     alert("error, form not submitted");
   }
@@ -57,6 +57,7 @@ async function editUser() {
 .edit-product-form > h2 {
   padding: 1rem 0;
 }
+
 .edit-product-form > p {
   padding: 1rem 0;
 }
