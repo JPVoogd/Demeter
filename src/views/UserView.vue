@@ -16,7 +16,7 @@ import {useAuthStore} from "@/stores/AuthStore";
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .user {
   text-align: center;
 }

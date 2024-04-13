@@ -112,7 +112,7 @@ async function createUser() {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .signup-form {
   text-align: center;
 }

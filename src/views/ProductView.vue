@@ -123,7 +123,7 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .product-view {
   display: flex;
   flex-wrap: wrap;

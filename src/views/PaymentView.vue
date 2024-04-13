@@ -49,7 +49,7 @@ async function paymentCash(inputPayment) {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .payment {
   text-align: center;
 }

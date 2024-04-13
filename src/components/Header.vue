@@ -60,7 +60,7 @@ async function logout() {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .nav {
   background: linear-gradient(90deg, #085889, #089c6d);
   top: 0;

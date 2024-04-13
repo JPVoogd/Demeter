@@ -33,7 +33,7 @@
 
 <script setup></script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 h2 {
   font-size: 3rem;

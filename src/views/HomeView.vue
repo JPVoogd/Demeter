@@ -42,7 +42,7 @@
 const link = "https://www.youtube.com/embed/GEX37KUltmA?si=gy9KKJFuPsBYR1pl";
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .home {
   text-align: center;
 }

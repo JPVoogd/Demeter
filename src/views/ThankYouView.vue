@@ -11,7 +11,7 @@
 
 <script setup></script>
 
-<style lang="scss" scoped>
+<style scoped>
 .error {
   padding: 4rem 2rem;
   text-align: center;

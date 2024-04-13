@@ -71,7 +71,7 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 .invoice {
 display: flex;

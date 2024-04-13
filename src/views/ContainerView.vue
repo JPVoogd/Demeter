@@ -60,7 +60,7 @@ async function updatePurchaseHistory() {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .product-container {
   width: 300px;
   height: 300px;

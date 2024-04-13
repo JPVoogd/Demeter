@@ -79,7 +79,7 @@ async function editUser() {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .user-edit-form {
   text-align: center;
 }

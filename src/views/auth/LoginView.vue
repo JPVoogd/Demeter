@@ -77,7 +77,7 @@ async function login() {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .login-form {
   text-align: center;
 }
