@@ -16,7 +16,7 @@
     <button @click="paymentCard(cardNumber)">Pay now!</button>
   </div>
 
-  <div v-if="useProductStore.cash">
+  <div v-if="useProductStore.cash" class="payment">
     <p>You are buying: {{ useProductStore.name }}</p>
     <p>The price is: €{{ useProductStore.price }}</p>
     <label>

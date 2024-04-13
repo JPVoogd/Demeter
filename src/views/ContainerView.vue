@@ -64,7 +64,7 @@ async function updatePurchaseHistory() {
 .product-container {
   width: 300px;
   height: 300px;
-  margin: 0.4rem;
+  margin: 3rem auto;
   display: flex;
   flex-direction: column;
   justify-content: center;

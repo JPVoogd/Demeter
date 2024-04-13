@@ -84,16 +84,16 @@ display: flex;
   border-collapse: collapse;
   text-align: center;
 }
-.invoice > table > tbody > tr > td {
-  padding: 0.4rem 3rem;
+
+.invoice > table > thead > tr > th {
+  padding: 0.5rem 0.75rem;
   margin: 0;
   gap: 0;
 }
 
-table tr:nth-child(odd) td{
-  //background: rgba(7, 154, 110, 0.75);
-}
-table tr:nth-child(even) td{
-  //background: rgba(8, 90, 136, 0.75);
+.invoice > table > tbody > tr > td {
+  padding: 0.4rem 0.75rem;
+  margin: 0;
+  gap: 0;
 }
 </style>
