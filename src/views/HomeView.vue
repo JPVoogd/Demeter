@@ -1,39 +1,35 @@
 <template>
-  <h1>Lorem</h1>
+  <h1>Welcome to Demeter the farmers vending machine!</h1>
   <div class="home">
     <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. A, incidunt
-      quibusdam? Consequuntur, illo itaque quibusdam magni iste culpa neque in
-      inventore doloremque consequatur, incidunt repellendus cupiditate et nobis
-      ea vel. Lorem ipsum dolor sit amet consectetur adipisicing elit. A,
-      incidunt quibusdam? Consequuntur, illo itaque quibusdam magni iste culpa
-      neque in inventore doloremque consequatur, incidunt repellendus cupiditate
-      et nobis ea vel.
+      On a remote farm, where the morning mist slowly lifted and the smell of
+      freshly cut grass hanging in the air was a small red one farm vending
+      machine next to the barn. The machine wasn't just any ordinary one vending
+      machine; he was a true miracle machine for the residents of the farm.
     </p>
     <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. A, incidunt
-      quibusdam? Consequuntur, illo itaque quibusdam magni iste culpa neque in
-      inventore doloremque consequatur, incidunt repellendus cupiditate et nobis
-      ea vel. Lorem ipsum dolor sit amet consectetur adipisicing elit. A,
-      incidunt quibusdam? Consequuntur, illo itaque quibusdam magni iste culpa
-      neque in inventore doloremque consequatur, incidunt repellendus cupiditate
-      et nobis ea vel.
+      But the real magic of the farm machine wasn't just its power to make
+      products. It was the sense of community it created between humans and
+      animals. Working together to feed the machine with what they had, and then
+      enjoyed the fruits of their labor together.
     </p>
   </div>
   <div class="content">
     <p class="linear-border">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
-      fugit, eligendi ullam incidunt voluptatum in cum itaque iure quaerat
-      perspiciatis ex pariatur quis labore reprehenderit ipsam necessitatibus
-      culpa sapiente hic!
+      With a farm vending machine, consumers have direct access to fresh produce
+      products straight from the farm. This eliminates the intervention of
+      intermediaries, so the products are often fresher and last longer.
+      Consumers can enjoy fresh eggs, milk, vegetables, fruits and...
+      other products without having to go to the supermarket.
     </p>
 
     <iframe width="700" height="330" :src="link"></iframe>
     <p class="linear-border">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
-      excepturi alias odio corporis nesciunt! Quae quisquam reiciendis eius
-      possimus mollitia vero voluptates, unde vel sunt tempora labore impedit
-      numquam optio!
+      By purchasing products directly from the farm through a vending machine,
+      consumers support and encourage local farmers
+      economy. The money spent at the machine often remains inside
+      the community, which can contribute to the preservation of agricultural land, it
+      creating jobs and promoting sustainable agricultural practices.
     </p>
   </div>
 </template>

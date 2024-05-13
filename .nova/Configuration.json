@@ -1,0 +1,4 @@
+{
+  "php.interpreter" : "\/opt\/homebrew\/bin\/php",
+  "php.validate" : "onSave"
+}
